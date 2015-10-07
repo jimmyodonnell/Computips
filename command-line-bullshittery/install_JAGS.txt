@@ -1,0 +1,40 @@
+# To get JAGS running through R on a Mac, you first have to install JAGS.
+
+# The easiest way to install JAGS is using Homebrew.
+
+# To get Homebrew, you need the Mac command line tools installed.
+
+# To check if the command line tools are installed, you can type:
+
+xcode-select -p
+
+# and if they are installed, it will show the path to the directory where they live.
+# Alternatively, (or if they aren't installed), you can just type a command at the command line (Terminal.app) that relies on them:
+
+make
+
+# or
+
+gcc
+
+# If they aren't installed, you'll get an error and a prompt asking if you'd like to install them.
+# Press enter when it prompts to show you the license agreement. Press q to exit the license agreement view. Type 'agree'.
+# If they are installed, you'll get an error from one of those programs saying you didn't give it any input files (e.g. 'clang: error: no input files')
+
+
+# If you don't have homebrew, you can use the following command to install it (relies on the command line tools!) (currently from http://brew.sh/)
+
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+
+# Then, use Homebrew to install JAGS
+
+brew install jags
+
+# Then, in R, install the package R2jags, which should also install some other packages on which it depends.
+# You can do this right from the same terminal window!
+
+R
+install.packages("R2jags") # should prompt you to choose the server you want to download from
+
+# you should be all set!

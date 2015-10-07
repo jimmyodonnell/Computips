@@ -1,0 +1,3 @@
+# If you don't have homebrew, you can use the following command to install it (relies on the command line tools!) (currently from http://brew.sh/)
+
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
