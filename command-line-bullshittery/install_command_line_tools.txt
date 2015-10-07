@@ -1,5 +1,10 @@
 # To check if the command line tools are installed, you can type:
 
+xcode-select --install
+
+# if they are installed, you will get an error saying so.
+
+# To simply check if they are installed, do:
 xcode-select -p
 
 # and if they are installed, it will show the path to the directory where they live.
