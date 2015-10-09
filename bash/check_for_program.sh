@@ -3,6 +3,8 @@
 # test whether program is installed
 program_name="pigz"
 
+# source: http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
+
 # this works in bash and is POSIX compliant (i.e. should be consistent across systems)
 if command -v "${program_name}" >/dev/null 2>&1; then
   echo "program found"
