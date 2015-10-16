@@ -50,12 +50,11 @@ identical(dup_table_rt, dup_table_mat)
 # scan(file = "scan.txt", what = list(age = 0, name = ""))
 # x <- scan(file = "scan.txt", what = list(NULL, name = character()))
 # x <- x[sapply(x, length) > 0]
-# scan(
-#   file = dup_table_csv, 
-#   what = as.list(c(NULL, rep("integer", length(columns)))), 
-#   skip = 1, 
-#   sep = ","
-# )
+# scan(file = dup_table_csv, what = as.list(c(NULL, rep("integer", length(columns)))), skip = 1, sep = ",")
+
+
+cat("2 3 5 7", "11 13 17 19", file="ex.dat", sep="\n")
+scan(file="ex.dat", what=list(x=0, y="", z=0), flush=TRUE)
 
 # optimized read.table
 # Even with optimization, the same operation with read table on the raw matrix (i.e. with rownames and colnames) never finishes
