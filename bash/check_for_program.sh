@@ -4,6 +4,9 @@
 program_name="pigz"
 
 # source: http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
+# command -v foo >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
+# type foo >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
+# hash foo 2>/dev/null || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
 
 # this works in bash and is POSIX compliant (i.e. should be consistent across systems)
 if command -v "${program_name}" >/dev/null 2>&1; then

@@ -1,0 +1,18 @@
+# seqtk install
+
+#1. Download ZIP from here (right hand side of the page): https://github.com/lh3/seqtk
+
+#2. Unpack the zip file however you want (double click)
+
+#3. Open terminal, cd to the directory you just made by unzipping. For me:
+cd /Users/threeprime/Desktop/seqtk-master
+
+#4. Make it by simply typing 'make'
+make
+
+#5. Copy the executable file into a folder in your path:
+cp seqtk /usr/local/bin
+
+#6. delete the directory you just made
+cd ..
+rm -r seqtk-master

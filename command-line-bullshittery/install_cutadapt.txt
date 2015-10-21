@@ -1,0 +1,13 @@
+Here's how I install/upgrade cutadapt:
+
+#1. Make sure you have "pip" installed: (Homebrew installs pip and easy_install, I think... so if this step doesn't work, trying installing homebrew first.)
+sudo easy_install pip
+
+#2. Install cutadapt using pip:
+sudo pip install cutadapt
+
+# if it's already installed:
+sudo pip install cutadapt --upgrade
+
+cutadapt --version
+# 1.7.1

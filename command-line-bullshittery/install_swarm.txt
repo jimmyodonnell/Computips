@@ -1,0 +1,25 @@
+# to install swarm:
+
+#1 Download the zip file from the github page (right hand side)
+
+#2 unzip it
+unzip swarm-master.zip -d swarm
+
+#3 open a terminal and cd to the directory "src" in the newly unzipped directory
+cd ~/Downloads/swarm-master/src
+
+#4 type "make" at the terminal once you're in the directory /swarm/src
+make
+
+#5 this will create the executable (program) file 'swarm' in the directory "bin" in the "swarm-master" folder
+
+#6 copy that file to a folder in your "PATH". The folder '/usr/bin' is a fine one
+cp ../bin/swarm /usr/bin/swarm
+# if it says permission denied, you can get permission by typing "sudo cp ../bin/swarm /usr/bin/swarm"
+
+#7 put the manual in the same place so you can access it from the terminal by typing "man swarm"
+cd ../man
+gzip -c swarm.1 > swarm.1.gz
+mv swarm.1.gz /usr/share/man/man1/
+
+# all set!
