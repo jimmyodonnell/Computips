@@ -1,0 +1,23 @@
+source: http://tex.stackexchange.com/questions/139401/how-to-use-graphicspath
+source: http://tex.stackexchange.com/questions/103008/including-figures-relative-to-the-path-of-the-current-document
+
+To include graphics from a folder/directory other than the one in which the .tex file lives:
+
+# 1: Add \graphicspath {{figures/}} before \begin{document}
+\graphicspath{{/Users/my_username/Projects/my_project/figures/}}
+
+# more generally:
+\graphicspath{{subdir1/}{subdir2/}{subdir3/}...{subdirn/}}
+
+# 2: Reference the path to the file relative to the .tex file directory.
+# If your directory hierarchy looks like this:
+my_project/ 
+		|--- Analysis/
+		|--- Data/
+		|--- Figures/
+				|--- figure1.pdf
+		|--- Manuscript/
+				|--- manuscript.tex
+
+# then for each figure, the reference should look like this:
+\includegraphics[width=\textwidth]{../Figures/figure1.pdf}
