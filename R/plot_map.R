@@ -13,8 +13,9 @@ library(raster)
 # "GSHHG: A Global Self-consistent, Hierarchical, High-resolution Geography Database"
 # http://www.soest.hawaii.edu/pwessel/gshhg/
 # also see https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html
-# download the shape files: gshhg-shp-2.3.4
 # It's kinda large (~150MB on 20160111), but for many purposes is probably the only data you need.
+# download the shape files: 
+download.file(url = "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.4.zip", destfile = file.path(".", "gshhg-shp-2.3.4.zip"))
 
 # The geography data come in five resolutions:
 # full resolution (f): Original (full) data resolution.
