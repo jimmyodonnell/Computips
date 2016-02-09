@@ -20,7 +20,7 @@ monthStart <- function(x)
 fotm <- unique(monthStart(rownames(avail)))
 
 # PLOTTING
-left_margin <- 6
+left_margin <- 8
 
 pdf(
   file = "availability_plot.pdf", 
