@@ -15,7 +15,11 @@ library(raster)
 # also see https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html
 # It's kinda large (~150MB on 20160111), but for many purposes is probably the only data you need.
 # download the shape files: 
-download.file(url = "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.4.zip", destfile = file.path(".", "gshhg-shp-2.3.4.zip"))
+# download.file(url = "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.4.zip", destfile = file.path(".", "gshhg-shp-2.3.4.zip"))
+
+# You'll then need to unzip it; you could do it from R, but the destination path isn't always the same, and it could overwrite something.
+# system(unzip "gshhg-shp-2.3.4.zip" -d "gshhg-shp-2.3.4")
+
 
 # The geography data come in five resolutions:
 # full resolution (f): Original (full) data resolution.
@@ -25,63 +29,123 @@ download.file(url = "http://www.soest.hawaii.edu/pwessel/gshhg/gshhg-shp-2.3.4.z
 # crude resolution (c): Another ~80 % reduction.
 
 # give the path to the directory containing the resolution you'd like to work with
-GSHHG_dir <- "/Users/jimmy.odonnell/Downloads/gshhg-shp-2.3.4/GSHHS_shp/h"
+GSHHG_dir <- "/Users/threeprime/Documents/Data/GIS/gshhg-shp-2.3.4/GSHHS_shp/h"
 
 # what is the filename (without extension) of the layer you want to load?
 layer_of_interest <- "GSHHS_h_L1" 
 
 # read in the data: remember, this is worldwide data
-GSHHG_h_L1 <- readOGR(dsn = GSHHG_dir, layer = layer_of_interest)
+GSHHG_obj <- readOGR(dsn = GSHHG_dir, layer = layer_of_interest)
 
 # specify some info about the area of interest.
 region_lat <- c(47, 49) # min, max latitude
 region_lon <- c(-124, -122) # min, max longitude
-bb_region <- rbind(x = region_lon, y = region_lat)
+
+# rather than clip right at the min and max points, you might want the extent to be a bit larger. Set the following line to the percent increase you'd like
+expansion_percent_lon <- 10
+expansion_percent_lat <- 10
+lon_exp <- diff(region_lon) * expansion_percent_lon/100
+plot_lon <- region_lon + c(-lon_exp, lon_exp)
+lat_exp <- diff(region_lat) * expansion_percent_lat/100
+plot_lat <- region_lat + c(-lat_exp, lat_exp)
+
+bb_region <- rbind(x = plot_lon, y = plot_lat)
+bb_dim <- apply(bb_region, 1, diff)
 
 # subset the worldwide data to the area you specified above
-PS_map <- crop(GSHHG_h_L1, extent(c(region_lon + c(-1, 1), region_lat + c(-1, 1))))
+PS_map <- crop(GSHHG_obj, extent(c(bb_region[1,], bb_region[2,])))
 
 # presumably, you did the subsetting to reduce the size of the gigantic shapefile and make operations on it (like plotting) faster, so you should probably remove the huge shapefile/thingy to free up some memory.
-rm(GSHHG_h_L1)
+rm(GSHHG_obj)
 
-dev.new(
-	width = 5, 
-	height = 7
-	)
+# If you'd like to add some features
+named_features <- rbind(
+  c("Seattle", -122.333056, 47.609722),
+  c("Puget Sound", -122.5, 48)
+)
+colnames(named_features) <- c("name", "lon", "lat")
 
+#----------------------- PLOT THE FRIGGIN MAP ALREADY! -------------------------
+
+# how wide should the map be?
+map_width_inches <- 8
+
+# Then that means the height should be...
+map_height_inches <- round(bb_dim[2] * map_width_inches / bb_dim[1])
+
+
+# OUTPUT FILE NAME AND DIMENSIONS
+pdf(
+  file = "site_map.pdf",
+  width = map_width_inches, 
+  height = map_height_inches
+)
+
+# SET BORDERS
+par(mar = c(4,4,1,1))
+
+# BASE MAP
 plot(
 	x = PS_map,
 	# axes = TRUE, 
-	col = "gray", 
-	border = "black", 
-	# bg = "aliceblue", 
+	col = "darkseagreen", 
+	border = "grey", 
+	bg = "aliceblue", 
 	ylim = region_lat, 
-	xlim = region_lon, 
-	main = "Puget Sound plotted after subset", 
+	xlim = region_lon
 	)
 
-	# xlab = "Longitude", 
-	# ylab = "Latitude"
+# POINTS
+points(
+  x = sites$Lon, 
+  y = sites$Lat, 
+  col = "black", 
+  bg = c("red", "yellow", "orange")[as.numeric(sites$team)], 
+  pch = c(21, 24)[as.numeric(sites$Dataset)], 
+  cex = 1.5
+)
 
+# X Axis (longitude)
 axis(
 	side = 1, 
-	at = seq(from = region_lon[1], to = region_lon[2]), 
+	# at = seq(from = region_lon[1], to = region_lon[2]), 
+	cex.axis = 0.8, 
 	line = 0
 	)
 
+# Y Axis (latitude)
 axis(
 	side = 2, 
-	at = seq(from = region_lat[1], to = region_lat[2]), 
+# 	at = seq(from = region_lat[1], to = region_lat[2]), 
 	line = 0, 
+	cex.axis = 0.8, 
 	las = 2
 	)
 
+# ADD BORDER
+box()
+
+# LABELS
 title(
-	main = "", 
-	sub = "", 
+  # main = "Puget Sound plotted after subset", 
+  sub = "", 
 	xlab = "Longitude", 
 	ylab = "Latitude"
 	)
+
+make.italic <- function(x) as.expression(lapply(x, function(y) bquote(italic(.(y)))))
+
+# OTHER TEXT
+text(
+  x = as.numeric(named_features[,"lon"]), 
+  y = as.numeric(named_features[,"lat"]), 
+  labels = make.italic(named_features[,"name"]), 
+  col = c("darkgreen", "lightblue4"), 
+  pos = c(4, NULL)
+)
+
+dev.off()
+
 
 
 # colors
