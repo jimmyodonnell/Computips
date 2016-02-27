@@ -2,7 +2,7 @@
 
 # working with git
 
-# useful resources: 
+# useful resources:
 # http://rogerdudler.github.io/git-guide/
 # http://pcottle.github.io/learnGitBranching/
 
@@ -64,7 +64,7 @@ git branch
 git branch -d the_local_branch
 
 # Add a new remote for your branch :
-git remote add [name_of_your_remote] 
+git remote add [name_of_your_remote]
 
 # Push changes from your commit into your branch :
 git push origin [name_of_your_remote]
@@ -110,8 +110,11 @@ git pull origin master
 
 
 
-
-
+# FORKED REPOSITORY
+# Scenario: You fork a repository from someone else's github to yours.
+# They make some changes, and you want to incorporate them.
+# To do so, you need to set that *original* repository as the 'upstream' remote
+git remote add upstream https://github.com/ropensci/taxize.git
 
 
 
@@ -166,7 +169,7 @@ git pull origin master
 
 # If you wish to set tracking information for this branch you can do so with:
 git branch --set-upstream-to=origin/<branch> master
-    
+
 # Merging via command line
 # If you do not want to use the merge button or an automatic merge cannot be performed, you can perform a manual merge on the command line.
 # Step 1: From your project repository, check out a new branch and test the changes.
