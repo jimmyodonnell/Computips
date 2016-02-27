@@ -116,8 +116,11 @@ git pull origin master
 # To do so, you need to set that *original* repository as the 'upstream' remote
 git remote add upstream https://github.com/ropensci/taxize.git
 
+# then download any changes that have been made
+git fetch upstream
 
-
+# and incorporate the changes from one of the remote brances into one of your local branches
+git merge upstream/master master
 
 
 
