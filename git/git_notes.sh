@@ -84,6 +84,8 @@ git branch -D [name_of_your_new_branch]
 # Delete the branch on github :
 git push origin :[name_of_your_new_branch]
 
+# check which files are different between two branches before you merge:
+git diff --name-status master..branchName
 
 # Before merging one branch into another, you can check whether there will be a ton of conflicts:
 git merge --no-commit --no-ff $BRANCHTOBEMERGEDINTOCURRENTBRANCH
