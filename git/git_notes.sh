@@ -85,7 +85,11 @@ git branch -D [name_of_your_new_branch]
 git push origin :[name_of_your_new_branch]
 
 
+# Before merging one branch into another, you can check whether there will be a ton of conflicts:
+git merge --no-commit --no-ff $BRANCHTOBEMERGEDINTOCURRENTBRANCH
 
+# This will allow you to examine/undo the merge, even if it is a fast-forward merge:
+git merge --abort
 
 # rename a file :
 git mv oldname newname
