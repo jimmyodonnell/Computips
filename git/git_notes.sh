@@ -102,7 +102,23 @@ git mv oldname newname
 # check if your local branches are up to date with those on the server (remote)
 git remote show origin
 
+# GOING BACK IN TIME! aka OOPS!
+# view an old version of a file (e.g. the 4th most recent commit of the_file.c) 
+git show HEAD~4:git_subdirectory/the_file.c
 
+# view an old version of a file by date
+git show HEAD@{2016-0510}:./fileInCurrentDirectory.txt
+
+# revert to an old version of a file:
+git checkout <commit-number> filename.txt
+git checkout HEAD~4 filename.txt
+
+# view the changes made since an old version
+git diff <commit-number> filename.txt
+
+# ways to revert a specific file to that commit
+git reset <commit-number> filename.txt
+git checkout <commit-number> filename.txt
 
 
 
