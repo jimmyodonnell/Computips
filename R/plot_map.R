@@ -27,19 +27,26 @@ library(raster)
 # intermediate resolution (i): Another ~80 % reduction.
 # low resolution (l): Another ~80 % reduction.
 # crude resolution (c): Another ~80 % reduction.
+resolution <- "f"
 
 # give the path to the directory containing the resolution you'd like to work with
-GSHHG_dir <- "/Users/threeprime/Documents/Data/GIS/gshhg-shp-2.3.4/GSHHS_shp/h"
+GSHHG_dir <- "/Users/threeprime/Documents/Data/GIS/gshhg-shp-2.3.4/GSHHS_shp/"
+
+GSHHG_dir <- paste(GSHHG_dir, resolution, sep = "")
 
 # what is the filename (without extension) of the layer you want to load?
-layer_of_interest <- "GSHHS_h_L1" 
+# layer_of_interest <- "GSHHS_l_L1"
+layer_of_interest <- paste("GSHHS_", resolution, "_L1", sep = "") 
 
 # read in the data: remember, this is worldwide data
 GSHHG_obj <- readOGR(dsn = GSHHG_dir, layer = layer_of_interest)
 
 # specify some info about the area of interest.
-region_lat <- c(47, 49) # min, max latitude
-region_lon <- c(-124, -122) # min, max longitude
+# PUGET SOUND: lat c(47,49) lon: c(-124, -122)
+SAN_JUAN_ISLAND_lat <- c(48.4, 48.65) 
+SAN_JUAN_ISLAND_lon <- c(-123.2, -122.95)
+region_lat <- SAN_JUAN_ISLAND_lat # min, max latitude 
+region_lon <- SAN_JUAN_ISLAND_lon # min, max longitude
 
 # rather than clip right at the min and max points, you might want the extent to be a bit larger. Set the following line to the percent increase you'd like
 expansion_percent_lon <- 10
