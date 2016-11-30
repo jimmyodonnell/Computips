@@ -1,0 +1,39 @@
+# source: http://www.techradar.com/how-to/computing/apple/terminal-101-creating-cron-jobs-1305651
+
+# more on formatting: http://www.nncron.ru/help/EN/working/cron-format.htm
+
+
+The timing sequence of a cron job looks like this:
+
+* * * * *
+
+The first asterisk is for specifying the minute of the run (0-59)
+The second asterisk is for specifying the hour of the run (0-23)
+The third asterisk is for specifying the day of the month for the run (1-31)
+The fourth asterisk is for specifying the month of the run (1-12)
+The fifth asterisk is for specifying the day of the week (where Sunday is equal to 0, up to Saturday is equal to 6)
+So, let's take a look at some examples:
+
+If you wanted to run the job every day at 1:00 p.m., then you could use the following cron job timing sequence:
+
+0 13 * * *
+
+If you wanted the job to run every 30 minutes, you could use the following sequence:
+
+30 * * * *
+
+And, lastly, if you wanted the job to run once a week on Wednesday, you could type the following sequence:
+
+* * * * 3
+
+* * * * * *
+| | | | | | 
+| | | | | +-- Year              (range: 1900-3000)
+| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+
+
+* * * * * *                         Each minute
