@@ -1,0 +1,35 @@
+% To compile this document and generate a pdf, run at the terminal:
+% xelatex font_sansserif_arial.tex
+
+\documentclass[10pt, a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{lipsum}
+\usepackage[ampersand]{easylist}
+
+\begin{document}
+
+\section{TITLE}
+\section{TITLE}
+\subsection{Subtitle}
+\subsection{Subtitle}
+\section{TITLE}
+\lipsum
+\subsection{Subtitle}
+\subsection{Subtitle}
+\subsubsection{Title}
+\begin{easylist}
+& Title
+& Title
+&& Subtitle
+&&& Title
+& Title
+\end{easylist}
+\subsubsection{Title}
+\subsection{Subtitle}
+\section{TITLE}
+\subsection{Subtitle}
+\subsubsection{Title}
+
+\end{document}
