@@ -1,0 +1,68 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+
+% To use generate a pdf using ARIAL or HELVETICA, run at the terminal:
+% xelatex font_sansserif.tex
+
+%-------------------------------------------------------------------------------
+% ARIAL
+% requires you build with xelatex.
+% \usepackage{fontspec}
+% \setmainfont{Arial}
+% \usepackage[ampersand]{easylist}
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------
+% NIMBUS SANS
+% very similar to Helvetica
+\usepackage{nimbussans}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+%-------------------------------------------------------------------------------
+
+
+
+%-------------------------------------------------------------------------------
+% CHIVO
+% \usepackage[familydefault,light]{Chivo}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% CARLITO
+% \usepackage[sfdefault,lf]{carlito}
+%% The 'lf' option for lining figures
+%% The 'sfdefault' option to make the base font sans serif
+% \renewcommand*\oldstylenums[1]{\carlitoOsF #1}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% ROBOTO
+% \usepackage[sfdefault]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
+
+% ROBOTO LIGHT:
+% \usepackage[sfdefault,light]{roboto}
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+% \section{TITLE}
+% \lipsum[1]
+%
+% \section{TITLE}
+% \subsection{Subtitle}
+% \lipsum[1]
+% \subsection{Subtitle}
+% \lipsum[1]
+%
+\section{TITLE}
+\lipsum[1]
+\subsection{Subtitle}
+\subsubsection{Subsubtitle}
+\lipsum[2]
+\subsubsection{Subsubtitle}
+\lipsum[3]
+
+
+\end{document}
