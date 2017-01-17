@@ -42,11 +42,16 @@ layer_of_interest <- paste("GSHHS_", resolution, "_L1", sep = "")
 GSHHG_obj <- readOGR(dsn = GSHHG_dir, layer = layer_of_interest)
 
 # specify some info about the area of interest.
-# PUGET SOUND: lat c(47,49) lon: c(-124, -122)
-SAN_JUAN_ISLAND_lat <- c(48.4, 48.65) 
-SAN_JUAN_ISLAND_lon <- c(-123.2, -122.95)
-region_lat <- SAN_JUAN_ISLAND_lat # min, max latitude 
-region_lon <- SAN_JUAN_ISLAND_lon # min, max longitude
+REGION <- "PUGET_SOUND" # PUGET_SOUND , SAN_JUAN_ISLAND
+
+if(REGION == "PUGET_SOUND"){
+  LAT <- c(47,49); LON <- c(-124, -122)
+} else if(REGION == "SAN_JUAN_ISLAND"){
+  LAT <- c(48.4, 48.65) ; LON <- c(-123.2, -122.95)
+}
+
+region_lat <- LAT # min, max latitude 
+region_lon <- LON # min, max longitude
 
 # rather than clip right at the min and max points, you might want the extent to be a bit larger. Set the following line to the percent increase you'd like
 expansion_percent_lon <- 10
@@ -67,15 +72,15 @@ rm(GSHHG_obj)
 
 # If you'd like to add some features
 named_features <- rbind(
-  c("Seattle", -122.333056, 47.609722),
-  c("Puget Sound", -122.5, 48)
+  # c("Puget Sound", -122.5, 48),
+  c("Seattle", -122.333056, 47.609722)
 )
 colnames(named_features) <- c("name", "lon", "lat")
 
 #----------------------- PLOT THE FRIGGIN MAP ALREADY! -------------------------
 
 # how wide should the map be?
-map_width_inches <- 8
+map_width_inches <- 5
 
 # Then that means the height should be...
 map_height_inches <- round(bb_dim[2] * map_width_inches / bb_dim[1])
