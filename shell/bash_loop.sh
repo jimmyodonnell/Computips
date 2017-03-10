@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 typeset -i i END # let's be explicit
+# using typeset with (or declare, which is the same) with `-i` 
+# will force END later be evaluated as an integer
+# see http://tldp.org/LDP/abs/html/declareref.html
+# this allows the variables END and i to be evaluated arithmetically 
+# in the 'for' statement of the loop below
 
 for ((i=1;i<=END;++i))
 do
