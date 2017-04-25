@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Natbib reference sheet</title>
+<META NAME="Author" CONTENT="Sebastien Merkel">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/CSS/boulot.css" type="text/css">
+<style type="text/css">
+h3 {color: #616AFF;}
+tt {color: #FF0040;}
+i {color: #172CD4;}
+</style>
+</head>
+<body onLoad="writePhpTACookie()">
+<DIV id="mainpage">
+<center>
+<table  width="80%" border="0" cellspacing="0" cellpadding="5">
+<tr><td valign="middle">
+<div align="center">
+<a href="natbib.php?lang=fr"><img src="/Images/frenchFlag.png"border="0" height="16" width="30" alt="Français"></a>
+</div>
+<td valign="middle">
+<div align="center">
+<a href="./index.php?lang=en"><img src="/Images/flecheHaut.gif" width="19" height="19" border="0" alt="Back"></a>
+</div>
+</td><td valign="middle">
+<div align="center">
+<a href="natbib.php?lang=en"><img src="/Images/englishFlag.png"border="0" height="16" width="30" alt="English"></a>
+</div>
+</td></tr>
+</TABLE>
+</center>
+<table>
+<tr><td>
+<P>
+<DIV ALIGN="CENTER">
+<B><FONT SIZE="+2">Reference sheet for <TT>natbib</TT> usage</FONT></B>
+<BR><FONT SIZE="+1">(Describing version 7.0b from 2002/02/27)</FONT>
+</DIV>
+<P>
+<BLOCKQUOTE>
+<I>For a more detailed description of the <TT>natbib</TT> package, L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X the
+source file <TT>natbib.dtx</TT>. 
+<BR></I></BLOCKQUOTE>
+<P>
+<H3><A NAME="SECTION00000100000000000000">
+Overview</A>
+</H3>
+The <TT>natbib</TT> package is a reimplementation of the L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X <TT>&#92;cite</TT> command,
+to work with both author-year and numerical citations. It is compatible with
+the standard bibliographic style files, such as <TT>plain.bst</TT>, as well as
+with those for <TT>harvard</TT>, <TT>apalike</TT>, <TT>chicago</TT>,
+<TT>astron</TT>, <TT>authordate</TT>.
+<P>
+<H3><A NAME="SECTION00000200000000000000">
+Loading</A>
+</H3>
+Load with <TT>&#92;usepackage[<I>options</I>]{natbib}</TT>. See list of
+<I>options</I> at the end.
+<P>
+<H3><A NAME="SECTION00000300000000000000">
+Replacement bibliography styles</A>
+</H3>
+I provide three new <TT>.bst</TT> files to replace the standard L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X numerical ones:
+<BLOCKQUOTE>
+<TT> plainnat.bst &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abbrvnat.bst &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsrtnat.bst
+</TT></BLOCKQUOTE>
+<H3><A NAME="SECTION00000400000000000000">
+Basic commands</A>
+</H3>
+The <TT>natbib</TT> package has two basic citation commands, <TT>&#92;citet</TT> and
+<TT>&#92;citep</TT> for <I>textual</I> and <I>parenthetical</I> citations, respectively.
+There also exist the starred versions <TT>&#92;citet*</TT> and <TT>&#92;citep*</TT> that print
+the full author list, and not just the abbreviated one.
+All of these may take one or two optional arguments to add some text before
+and after the citation.
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. (1990)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet[chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. (1990, chap.&nbsp;2)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones et al., 1990)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones et al., 1990, chap.&nbsp;2)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[see][]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(see Jones et al., 1990)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[see][chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(see Jones et al., 1990, chap.&nbsp;2)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet*{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones, Baker, and Williams (1990)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep*{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones, Baker, and Williams, 1990)</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<H3><A NAME="SECTION00000500000000000000">
+Multiple citations</A>
+</H3>
+Multiple citations may be made by including more than one
+citation key in the <TT>&#92;cite</TT> command argument.
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet{jon90,jam91}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. (1990); James et al. (1991)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90,jam91}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones et al., 1990; James et al. 1991)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90,jon91}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones et al., 1990, 1991)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90a,jon90b}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Jones et al., 1990a,b)</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<P>
+<H3><A NAME="SECTION00000600000000000000">
+Numerical mode</A>
+</H3>
+These examples are for author-year citation mode. In numerical mode, the
+results are different.
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. [21]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citet[chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. [21, chap.&nbsp;2]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">[21]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">[21, chap.&nbsp;2]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[see][]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">[see 21]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep[see][chap.&nbsp;2]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">[see 21, chap.&nbsp;2]</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citep{jon90a,jon90b}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">[21, 32]</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<H3><A NAME="SECTION00000700000000000000">
+Suppressed parentheses</A>
+</H3>
+As an alternative form of citation, <TT>&#92;citealt</TT> is the same as <TT>&#92;citet</TT> but
+<I>without parentheses</I>. Similarly, <TT>&#92;citealp</TT> is <TT>&#92;citep</TT> without
+parentheses. Multiple references, notes, and the starred variants
+also exist.
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealt{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al. 1990</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealt*{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones, Baker, and Williams 1990</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealp{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al., 1990</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealp*{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones, Baker, and Williams, 1990</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealp{jon90,jam91}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al., 1990; James et al., 1991</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citealp[pg.&nbsp;32]{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al., 1990, pg.&nbsp;32</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citetext{priv. comm.}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(priv. comm.)</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+The <TT>&#92;citetext</TT> command
+allows arbitrary text to be placed in the current citation parentheses.
+This may be used in combination with <TT>&#92;citealp</TT>.
+
+<H3><A NAME="SECTION00000800000000000000">
+Partial citations</A>
+</H3>
+In author-year schemes, it is sometimes desirable to be able to refer to
+the authors without the year, or vice versa. This is provided with the
+extra commands
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;citeauthor{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones et al.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citeauthor*{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Jones, Baker, and Williams</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citeyear{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">1990</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citeyearpar{jon90}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(1990)</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<H3><A NAME="SECTION00000900000000000000">
+Forcing upper cased names</A>
+</H3>
+If the first author's name contains a <I>von</I> part, such as ``della
+Robbia'', then <TT>&#92;citet{dRob98}</TT> produces ``della Robbia (1998)'', even at the
+beginning of a sentence. One can force the first letter to be in upper case
+with the command <TT>&#92;Citet</TT> instead. Other upper case commands also exist.
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="RIGHT">when</TD>
+<TD ALIGN="LEFT"><TT>&#92;citet{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">della Robbia (1998)</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">then</TD>
+<TD ALIGN="LEFT"><TT>&#92;Citet{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Della Robbia (1998)</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="LEFT"><TT>&#92;Citep{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">(Della Robbia, 1998)</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="LEFT"><TT>&#92;Citealt{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Della Robbia 1998</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="LEFT"><TT>&#92;Citealp{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Della Robbia, 1998</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="LEFT"><TT>&#92;Citeauthor{dRob98}</TT></TD>
+<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD ALIGN="LEFT">Della Robbia</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+These commands also exist in starred versions for full author names.
+<P>
+<H3><A NAME="SECTION000001000000000000000">
+Citation aliasing</A>
+</H3>
+Sometimes one wants to refer to a reference with a special designation,
+rather than by the authors, i.e. as Paper&nbsp;I, Paper&nbsp;II. Such aliases can be
+defined and used, textual and/or parenthetical with:
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT"><TT>&#92;defcitealias{jon90}{Paper&nbsp;I}</TT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citetalias{jon90}</TT></TD>
+<TD ALIGN="CENTER">-&gt;</TD>
+<TD ALIGN="LEFT">Paper&nbsp;I</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><TT>&#92;citepalias{jon90}</TT></TD>
+<TD ALIGN="CENTER">-&gt;</TD>
+<TD ALIGN="LEFT">(Paper&nbsp;I)</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+These citation commands function much like <TT>&#92;citet</TT> and <TT>&#92;citep</TT>: they may
+take multiple keys in the argument, may contain notes, and are marked as
+hyperlinks.
+<H3><A NAME="SECTION000001100000000000000">
+Selecting citation style and punctuation</A>
+</H3>
+Use the command <TT>&#92;bibpunct</TT> with one optional and 6 mandatory arguments:
+<OL>
+<LI>the opening bracket symbol, default = (
+</LI>
+<LI>the closing bracket symbol, default = )
+</LI>
+<LI>the punctuation between multiple citations, default = ;
+</LI>
+<LI>the letter `n' for numerical style, or `s' for numerical superscript
+      style, any other letter for
+      author-year, default = author-year;
+</LI>
+<LI>the punctuation that comes between the author names and the year
+</LI>
+<LI>the punctuation that comes between years or numbers when common author
+      lists are suppressed (default = ,);
+</LI>
+</OL>
+<P>
+The optional argument is the character preceding a post-note, default is a
+comma plus space. In redefining this character, one must include a space if
+one is wanted.
+<P>
+Example&nbsp;1, <TT>&#92;bibpunct{[}{]}{,}{a}{}{;}</TT> changes the output of
+<BLOCKQUOTE>
+<TT>&#92;citepjon90,jon91,jam92</TT>
+</BLOCKQUOTE>
+into [Jones et al. 1990; 1991, James et al. 1992].
+<P>
+Example&nbsp;2, <TT>&#92;bibpunct[; ]{(}{)}{,}{a}{}{;}</TT> changes the output of
+<BLOCKQUOTE>
+<TT>&#92;citep[and references therein]{jon90}</TT>
+</BLOCKQUOTE>
+into (Jones et al. 1990; and references therein).
+<P>
+<H3><A NAME="SECTION000001200000000000000">
+Other formatting options</A>
+</H3>
+<UL>
+<LI>Redefine <TT>&#92;bibsection</TT> to the desired sectioning command for introducing
+the list of references. This is normally <TT>&#92;section*</TT> or <TT>&#92;chapter*</TT>.
+</LI>
+<LI>Define <TT>&#92;bibpreamble</TT> to be any text that is to be printed after the heading but
+before the actual list of references.
+</LI>
+<LI>Define <TT>&#92;bibfont</TT> to be a font declaration, e.g. <TT></TT> to apply to
+the list of references.
+</LI>
+<LI>Define <TT>&#92;citenumfont</TT> to be a font declaration or command like <TT>&#92;itshape</TT>
+or <TT>&#92;textit</TT>.
+</LI>
+<LI>Redefine <TT>&#92;bibnumfmt</TT> as a command with an argument to format the numbers in
+the list of references. The default definition is <TT>[#1]</TT>.
+</LI>
+<LI>The indentation after the first line of each reference is given by
+<TT>&#92;bibhang</TT>; change this with the <TT>&#92;setlength</TT> command.
+</LI>
+<LI>The vertical spacing between references is set by <TT>&#92;bibsep</TT>; change this with
+the <TT>&#92;setlength</TT> command.
+</LI>
+</UL>
+<P>
+<H3><A NAME="SECTION000001300000000000000">
+Automatic indexing of citations</A>
+</H3>
+If one wishes to have the citations entered in the <TT>.idx</TT> indexing
+file, it is only necessary to issue <TT>&#92;citeindextrue</TT> at any point in the
+document. All following <TT>&#92;cite</TT> commands, of all variations, then insert
+the corresponding entry to that file. With <TT>&#92;citeindexfalse</TT>, these
+entries will no longer be made.
+<P>
+<H3><A NAME="SECTION000001400000000000000">
+Use with <TT>chapterbib</TT> package</A>
+</H3>
+<P>
+The <TT>natbib</TT> package is compatible with the <TT>chapterbib</TT> package
+which makes it possible to have several bibliographies in one document.
+<P>
+The package makes use of the <TT>&#92;include</TT> command, and each <TT>&#92;included</TT> file
+has its own bibliography.
+<P>
+The order in which the <TT>chapterbib</TT> and <TT>natbib</TT> packages are loaded
+is unimportant.
+<P>
+The <TT>chapterbib</TT> package provides an option <TT>sectionbib</TT>
+that puts the bibliography in a <TT>&#92;section*</TT> instead of <TT>&#92;chapter*</TT>,
+something that makes sense if there is a bibliography in each chapter.
+This option will not work when <TT>natbib</TT> is also loaded; instead, add
+the option to natbib.
+<P>
+Every <TT>&#92;include</TT>d file must contain its own
+<TT>&#92;bibliography</TT> command where the bibliography is to appear. The database
+files listed as arguments to this command can be different in each file,
+of course. However, what is not so obvious, is that each file must also
+contain a <TT>&#92;bibliographystyle</TT> command, <I>preferably with the same
+style  argument</I>.
+<H3><A NAME="SECTION000001500000000000000">
+Sorting and compressing citations</A>
+</H3>
+Do not use the <TT>&#92;cite</TT> package with natbib; rather use one of the
+options <TT>sort</TT> or <TT>sort&amp;compress</TT>.
+<P>
+These also work with author-year citations, making multiple citations appear
+in their order in the reference list.
+<P>
+<H3><A NAME="SECTION000001600000000000000">
+Long author list on first citation</A>
+</H3>
+Use option <TT>longnamesfirst</TT> to have first citation automatically give
+the full list of authors.
+<P>
+Suppress this for certain citations with <TT>&#92;shortcites{<I>key-list}</I></TT>,
+given before the first citation.
+<P>
+<H3><A NAME="SECTION000001700000000000000">
+Local configuration</A>
+</H3>
+Any local recoding or definitions can be put in <TT>natbib.cfg</TT> which
+is read in after the main package file.
+<P>
+<H3><A NAME="SECTION000001800000000000000">
+Options that can be added to <TT>&#92;usepackage</TT></A>
+</H3>
+<UL>
+<LI><TT>round</TT>: (default) for round parentheses;
+</LI>
+<LI><TT>square</TT>: for square brackets;
+</LI>
+<LI><TT>curly</TT>: for curly braces;
+</LI>
+<LI><TT>angle</TT>: for angle brackets;
+</LI>
+<LI><TT>colon</TT>: (default) to separate multiple citations with
+     colons;
+</LI>
+<LI><TT>comma</TT>: to use commas as separaters;
+</LI>
+<LI><TT>authoryear</TT>: (default) for author-year citations;
+</LI>
+<LI><TT>numbers</TT>: for numerical citations;
+</LI>
+<LI><TT>super</TT>: for superscripted numerical citations, as in
+     <I>Nature</I>;
+</LI>
+<LI><TT>sort</TT>: orders multiple citations into the sequence in
+     which they appear in the list of references;
+</LI>
+<LI><TT>sort&amp;compress</TT>: as <TT>sort</TT> but in addition multiple
+     numerical citations are compressed if possible (as 3-6, 15);
+</LI>
+<LI><TT>longnamesfirst</TT>: makes the first citation of any reference
+     the equivalent of the starred variant (full author list) and subsequent
+     citations normal (abbreviated list);
+</LI>
+<LI><TT>sectionbib</TT>: redefines <TT>&#92;thebibliography</TT> to issue
+     <TT>&#92;section*</TT> instead of <TT>&#92;chapter*</TT>; valid only for classes with a
+     <TT>&#92;chapter</TT> command; to be used with the <TT>chapterbib</TT> package;
+</LI>
+<LI><TT>nonamebreak</TT>: keeps all the authors' names in a citation on
+     one line; causes overfull hboxes but helps with some <TT>hyperref</TT>
+     problems.
+</LI>
+</UL>
+<H3><A NAME="SECTION000001900000000000000">
+About this document ...</A>
+</H3>
+<P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2HTML</A> translator Version 200
+2-1 (1.68),
+&#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>,
+Computer Based Learning Unit, University of Leeds,
+&#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>,
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were:
+<STRONG>latex2html</STRONG> <TT>-split 0 -no_navigation -t 'Natbib reference sheet' natnote
+s.tex</TT>
+<P>Original file: natnotes.tex,
+&#169; 1993-2002 Patrick W Daly, Max-Planck-Institut fr Aeronomie, D-37191 Katlenburg-Lindau
+<P>
+The original L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X file was modified by
+S. Merkel, Institute for Solid State Physics, Univ. of Tokyo, on 12/26/2002 to be converted
+ to HTML properly.
+<P>
+The resulting HTML file was modified by S. Merkel as well.
+</TD></TR>
+</TABLE>
+<div class="clearer">&nbsp;</div></DIV>
+<div id="footer">
+<table>
+<tr>
+<td>
+<address>
+<strong>Contact details</strong><br>
+Sébastien Merkel<br>
+E: sebastien.merkel@univ-lille1.fr<br>
+T: +33 320 43 65 16
+</address>
+</td>
+<td>
+<address>
+<strong>Postal address</strong><br>
+<a href="http://umet.univ-lille1.fr/">Unité Matériaux et Transformations</a>, Bât. C6<br>
+<a href="http://www.univ-lille1.fr">Université Lille 1</a><br>
+59650 Villeneuve d'Ascq<br>
+France
+</address>
+</td>
+<td>
+Researcher ID: <a href="http://www.researcherid.com/rid/E-5501-2011">E-5501-2011</a><br>
+Orcid ID: <a href="http://orcid.org/0000-0003-2767-581X">0000-0003-2767-581X</a><br>
+Google Scholar ID: <a href="http://scholar.google.com/citations?user=KKQe2RoAAAAJ">KKQe2RoAAAAJ</a><br>
+Twitter: <a href="https://twitter.com/sebastienmerkel">@SebastienMerkel</a><br>
+Research Gate: <a href="https://www.researchgate.net/profile/Sebastien_Merkel">Sebastien_Merkel</a>
+</td>
+</table>
+</div>
+<div id="hdr"><span><h2>&copy; Sébastien Merkel, Université Lille 1, France</h2><a href="http://merkel.texture.rocks/index.php?lang=en">Home</a> > <a href='http://merkel.texture.rocks/Latex/index.php?lang=en'>Latex</a> > natbib.php</span></div>
+</html>
