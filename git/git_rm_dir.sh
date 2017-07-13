@@ -23,3 +23,6 @@ git gc --prune=all --aggressive
 git push origin --all --force
 git push origin --tags --force
 
+# check the size of the repository before and after:
+git count-objects -vH
+
