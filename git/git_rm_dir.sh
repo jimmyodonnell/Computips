@@ -29,7 +29,7 @@ git grep -i 'mypassword' $(git rev-list --all)
 
 # Case C: Deleting entire deleleted directories
 # To get a list of entire directories that have been removed from the repository:
-git log --all --pretty=format: --name-only --diff-filter=D | sed -r 's|[^/]+$||g' | sort -u
+git log --all --pretty=format: --name-only --diff-filter=D | sed -E 's|[^/]+$||g' | sort -u
 
 # Step 3: Rewrite history and remove the old files
 # Replace FILE_LIST with the files or directories that you are removing.
@@ -42,7 +42,8 @@ git filter-branch \
   -- --all
 
 # I'm not sure what this does...
-git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
+git for-each-ref --format="%(refname)" refs/original/ |\
+  xargs -n 1 git update-ref -d
 
 # Step 4: Prune all references with garbage collection and reclaim space
 # Ensure all old refs are fully removed
