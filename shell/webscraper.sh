@@ -2,7 +2,7 @@
 
 website="${1}"
 
-wget -r --no-parent "${website}"
+# wget -r --no-parent "${website}"
 
 wget \
      --recursive \
